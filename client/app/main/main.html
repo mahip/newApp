@@ -1,0 +1,46 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+<header class="hero-unit" id="banner">
+  <div class="container">
+    <h1>WELCOME!</h1>
+  </div>
+</header>
+
+<div class="container">
+    <div class="form-inline">
+        <label class="control-label">Select book by :</label>
+        <label class="radio">
+            <input ng-model="searchType" value="Name" type="radio">Name
+        </label>
+        <label class="radio">
+            <input ng-model="searchType" value="Author" type="radio">Author
+        </label>
+        <label class="radio">
+            <input ng-model="searchType" value="Year" type="radio">Publication Year
+        </label>
+    </div>
+    <form class="searchForm">
+        <p class="input-group">
+            <input type="text" class="form-control" placeholder="Search a book here." ng-model="book">
+            <span class="input-group-btn">
+                <button type="submit" class="btn btn-primary" ng-click="searchBook()">Search</button>
+            </span>
+        </p>
+        <p ng-hide="errMsg" class="message"></p>
+
+    </form>
+    <div>
+        <ul>
+            <li ng-repeat="book in bookNames">{{book.name}} by {{book.author}} published in {{book.pYear}}  </li>
+        </ul>
+    </div>
+    <a ui-sref=".showBooks" class="btn btn-primary">ShowBooks</a>
+    <div ui-view></div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+      <p>Library Management |
+        <a href="#">Contact Us</a> |
+         <a href="#">FeedBack</a></p>
+  </div>
+</footer>
