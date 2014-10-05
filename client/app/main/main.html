@@ -9,13 +9,13 @@
     <div class="form-inline">
         <label class="control-label">Select book by :</label>
         <label class="radio">
-            <input ng-model="searchType" value="Name" type="radio">Name
+            <input ng-model="searchType" value="name" type="radio">Name
         </label>
         <label class="radio">
-            <input ng-model="searchType" value="Author" type="radio">Author
+            <input ng-model="searchType" value="author" type="radio">Author
         </label>
         <label class="radio">
-            <input ng-model="searchType" value="Year" type="radio">Publication Year
+            <input ng-model="searchType" value="year" type="radio">Publication Year
         </label>
     </div>
     <form class="searchForm">
@@ -26,11 +26,10 @@
             </span>
         </p>
         <p ng-hide="errMsg" class="message"></p>
-
     </form>
     <div>
         <ul>
-            <li ng-repeat="book in bookNames">{{book.name}} by {{book.author}} published in {{book.pYear}}  </li>
+            <li ng-repeat="book in bookNames">{{book.name}} by {{book.author}} published in {{book.publicationYear}}  </li>
         </ul>
     </div>
     <a ui-sref=".showBooks" class="btn btn-primary">ShowBooks</a>

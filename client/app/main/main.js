@@ -15,7 +15,7 @@ angular.module('newAppApp')
        .state('main.showBooks',{
          url: 'home/showBooks',
          templateUrl: 'app/content/books.html'
-      })
+      });
 
 
   });

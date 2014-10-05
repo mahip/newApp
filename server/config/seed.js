@@ -7,6 +7,26 @@
 
 var Thing = require('../api/thing/thing.model');
 var User = require('../api/user/user.model');
+var books = require('../api/books/books.model');
+
+books.find({}).remove(function() {
+    books.create({
+        name : 'Development Tools',
+        author:'ashfaq',
+        publicationYear:2004,
+        available:true
+    }, {
+        name : 'c',
+        author:'mahip',
+        publicationYear:2004,
+        available:true
+    }, {
+        name : 'java',
+        author:'ashfaq',
+        publicationYear:2005,
+        available:true
+    });
+});
 
 Thing.find({}).remove(function() {
   Thing.create({

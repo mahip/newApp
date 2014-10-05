@@ -1,15 +1,13 @@
 'use strict';
 
 var app=angular.module('newAppApp');
-  app.controller('MainCtrl', function ($scope, $http, socket,search) {
+  app.controller('MainCtrl', function ($scope, $http, socket) {
     $scope.searchType='Name';
     $scope.book='';
     $scope.books = [];
     $scope.errMsg=true;
-    /*$http.get('/api/books').success(function(bookNames) {
-        $scope.bookNames = bookNames;
-        socket.syncUpdates('book', $scope.bookNames);
-    });*/
+      $scope.bookNames = [];
+
     $scope.searchBook = function() {
         if($scope.book === '') {
             $scope.bookNames = [];
@@ -17,8 +15,11 @@ var app=angular.module('newAppApp');
             $('.message').text("book name,author or publication year can't be empty");
             return;
         }
-        //$http.post('/api/books', { name: $scope.bookName });
-        $scope.bookNames = search.find($scope.book,$scope.searchType);
+        $http.get('/api/books/'+$scope.searchType+'/'+$scope.book).success(function(bookNames) {
+            console.log(bookNames);
+            $scope.bookNames = bookNames;
+            //socket.syncUpdates('book', $scope.bookNames);
+        });
         if($scope.bookNames.length == 0){
             $scope.errMsg=false;
             $('.message').text("no results found, try again");
@@ -28,7 +29,7 @@ var app=angular.module('newAppApp');
     };
   });
 
-  app.factory('search',function(){
+  /*app.factory('search',function(){
     var books = [{
       'name':'java',
       'author':'a1',
@@ -65,6 +66,7 @@ var app=angular.module('newAppApp');
            }
         });
         return names;
-    }
+    };
     return sBooks;
   });
+*/
